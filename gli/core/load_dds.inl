@@ -117,7 +117,7 @@ namespace detail
 
 	static_assert(sizeof(dds_header10) == 20, "DDS DX10 Extended Header size mismatch");
 
-	inline target get_target(dds_header const& Header, dds_header10 const& Header10)
+	target get_target(dds_header const& Header, dds_header10 const& Header10)
 	{
 		if((Header.CubemapFlags & detail::DDSCAPS2_CUBEMAP) || (Header10.MiscFlag & detail::D3D10_RESOURCE_MISC_TEXTURECUBE))
 		{
@@ -142,7 +142,7 @@ namespace detail
 	}
 
 	// Some formats have multiple fourcc values. This function allows remapping to the default fourcc value of a format
-	inline dx::d3dfmt remap_four_cc(dx::d3dfmt FourCC)
+	dx::d3dfmt remap_four_cc(dx::d3dfmt FourCC)
 	{
 		switch(FourCC)
 		{
@@ -160,7 +160,7 @@ namespace detail
 	}
 }//namespace detail
 
-	inline texture load_dds(char const * Data, std::size_t Size)
+	texture load_dds(char const * Data, std::size_t Size)
 	{
 		GLI_ASSERT(Data && (Size >= sizeof(detail::FOURCC_DDS)));
 
@@ -300,7 +300,7 @@ namespace detail
 		return Texture;
 	}
 
-	inline texture load_dds(char const * Filename)
+	texture load_dds(char const * Filename)
 	{
 		FILE* File = detail::open_file(Filename, "rb");
 		if(!File)
@@ -319,7 +319,7 @@ namespace detail
 		return load_dds(&Data[0], Data.size());
 	}
 
-	inline texture load_dds(std::string const & Filename)
+	texture load_dds(std::string const & Filename)
 	{
 		return load_dds(Filename.c_str());
 	}

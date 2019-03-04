@@ -3,7 +3,7 @@
 namespace gli{
 namespace detail
 {
-	inline void flip(image ImageDst, image ImageSrc, size_t BlockSize)
+	void flip(image ImageDst, image ImageSrc, size_t BlockSize)
 	{
 		size_t const LineSize = BlockSize * ImageDst.extent().x;
 
@@ -19,7 +19,7 @@ namespace detail
 		}
 	}
 
-	inline void flip_block_s3tc(uint8_t* BlockDst, uint8_t* BlockSrc, format Format, bool HeightTwo)
+	void flip_block_s3tc(uint8_t* BlockDst, uint8_t* BlockSrc, format Format, bool HeightTwo)
 	{
 		// There is no distinction between RGB and RGBA in DXT-compressed textures,
 		// it is used only to tell OpenGL how to interpret the data.
@@ -145,7 +145,7 @@ namespace detail
 		assert(false);
 	}
 
-	inline void flip_s3tc(image ImageDst, image ImageSrc, format Format)
+	void flip_s3tc(image ImageDst, image ImageSrc, format Format)
 	{
 		if(ImageSrc.extent().y == 1)
 		{
@@ -174,14 +174,14 @@ namespace detail
 
 /*
 template <>
-inline image flip(image const & Image)
+image flip(image const & Image)
 {
 
 }
 */
 
 template <>
-inline texture2d flip(texture2d const& Texture)
+texture2d flip(texture2d const& Texture)
 {
 	GLI_ASSERT(!gli::is_compressed(Texture.format()) || gli::is_s3tc_compressed(Texture.format()));
 
@@ -202,7 +202,7 @@ inline texture2d flip(texture2d const& Texture)
 }
 
 template <>
-inline texture2d_array flip(texture2d_array const& Texture)
+texture2d_array flip(texture2d_array const& Texture)
 {
 	GLI_ASSERT(!gli::is_compressed(Texture.format()) || gli::is_s3tc_compressed(Texture.format()));
 
@@ -225,7 +225,7 @@ inline texture2d_array flip(texture2d_array const& Texture)
 }
 
 template <>
-inline texture_cube flip(texture_cube const & Texture)
+texture_cube flip(texture_cube const & Texture)
 {
 	GLI_ASSERT(!gli::is_compressed(Texture.format()) || gli::is_s3tc_compressed(Texture.format()));
 
@@ -248,7 +248,7 @@ inline texture_cube flip(texture_cube const & Texture)
 }
 
 template <>
-inline texture_cube_array flip(texture_cube_array const & Texture)
+texture_cube_array flip(texture_cube_array const & Texture)
 {
 	assert(!is_compressed(Texture.format()) || is_s3tc_compressed(Texture.format()));
 
@@ -273,7 +273,7 @@ inline texture_cube_array flip(texture_cube_array const & Texture)
 }
 
 template <>
-inline texture flip(texture const & Texture)
+texture flip(texture const & Texture)
 {
 	switch(Texture.target())
 	{

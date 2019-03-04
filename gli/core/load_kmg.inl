@@ -27,7 +27,7 @@ namespace detail
 		std::uint32_t MaxLevel;
 	};
 
-	inline texture load_kmg100(char const * Data, std::size_t Size)
+	texture load_kmg100(char const * Data, std::size_t Size)
 	{
 		detail::kmgHeader10 const & Header(*reinterpret_cast<detail::kmgHeader10 const *>(Data));
 
@@ -64,7 +64,7 @@ namespace detail
 	}
 }//namespace detail
 
-	inline texture load_kmg(char const * Data, std::size_t Size)
+	texture load_kmg(char const * Data, std::size_t Size)
 	{
 		GLI_ASSERT(Data && (Size >= sizeof(detail::kmgHeader10)));
 
@@ -77,7 +77,7 @@ namespace detail
 		return texture();
 	}
 
-	inline texture load_kmg(char const * Filename)
+	texture load_kmg(char const * Filename)
 	{
 		FILE* File = detail::open_file(Filename, "rb");
 		if(!File)
@@ -96,7 +96,7 @@ namespace detail
 		return load_kmg(&Data[0], Data.size());
 	}
 
-	inline texture load_kmg(std::string const & Filename)
+	texture load_kmg(std::string const & Filename)
 	{
 		return load_kmg(Filename.c_str());
 	}

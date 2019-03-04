@@ -3,7 +3,7 @@
 namespace gli
 {
 	template <typename texture_type>
-	inline texture_type convert(texture_type const& Texture, format Format)
+	texture_type convert(texture_type const& Texture, format Format)
 	{
 		typedef float T;
 		typedef typename texture::extent_type extent_type;

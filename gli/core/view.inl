@@ -1,22 +1,22 @@
 namespace gli
 {
-	inline image view(image const& Image)
+	image view(image const& Image)
 	{
 		return Image;
 	}
 
-	inline texture view(texture const& Texture)
+	texture view(texture const& Texture)
 	{
 		return Texture;
 	}
 
 	template <typename texType>
-	inline texture view(texType const& Texture)
+	texture view(texType const& Texture)
 	{
 		return Texture;
 	}
 
-	inline texture view
+	texture view
 	(
 		texture const& Texture,
 		texture::size_type BaseLayer, texture::size_type MaxLayer,
@@ -37,7 +37,7 @@ namespace gli
 	}
 
 	template <typename texType>
-	inline texture view(texType const& Texture, format Format)
+	texture view(texType const& Texture, format Format)
 	{
 		GLI_ASSERT(!Texture.empty());
 		GLI_ASSERT(block_size(Texture.format()) == block_size(Format));
@@ -45,7 +45,7 @@ namespace gli
 		return texture(Texture, Texture.target(), Format);
 	}
 
-	inline texture view
+	texture view
 	(
 		texture1d const& Texture,
 		texture1d::size_type BaseLevel, texture1d::size_type MaxLevel
@@ -61,7 +61,7 @@ namespace gli
 			Texture.base_level() + BaseLevel, Texture.base_level() + MaxLevel);
 	}
 
-	inline texture view
+	texture view
 	(
 		texture1d_array const & Texture,
 		texture1d_array::size_type BaseLayer, texture1d_array::size_type MaxLayer,
@@ -79,7 +79,7 @@ namespace gli
 			Texture.base_level() + BaseLevel, Texture.base_level() + MaxLevel);
 	}
 
-	inline texture view
+	texture view
 	(
 		texture2d const & Texture,
 		texture2d::size_type BaseLevel, texture2d::size_type MaxLevel
@@ -95,7 +95,7 @@ namespace gli
 			Texture.base_level() + BaseLevel, Texture.base_level() + MaxLevel);
 	}
 
-	inline texture view
+	texture view
 	(
 		texture2d_array const & Texture,
 		texture2d_array::size_type BaseLayer, texture2d_array::size_type MaxLayer,
@@ -113,7 +113,7 @@ namespace gli
 			Texture.base_level() + BaseLevel, Texture.base_level() + MaxLevel);
 	}
 
-	inline texture view
+	texture view
 	(
 		texture3d const & Texture,
 		texture3d::size_type BaseLevel, texture3d::size_type MaxLevel
@@ -129,7 +129,7 @@ namespace gli
 			Texture.base_level() + BaseLevel, Texture.base_level() + MaxLevel);
 	}
 
-	inline texture view
+	texture view
 	(
 		texture_cube const & Texture,
 		texture_cube::size_type BaseFace, texture_cube::size_type MaxFace,
@@ -147,7 +147,7 @@ namespace gli
 			Texture.base_level() + BaseLevel, Texture.base_level() + MaxLevel);
 	}
 
-	inline texture view
+	texture view
 	(
 		texture_cube_array const & Texture,
 		texture_cube_array::size_type BaseLayer, texture_cube_array::size_type MaxLayer,

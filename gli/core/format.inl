@@ -30,7 +30,7 @@ namespace detail
 		std::uint16_t Flags;
 	};
 
-	inline formatInfo const & get_format_info(format Format)
+	formatInfo const & get_format_info(format Format)
 	{
 		GLI_ASSERT(Format >= FORMAT_FIRST && Format <= FORMAT_LAST);
 
@@ -284,7 +284,7 @@ namespace detail
 		return Table[Format - FORMAT_FIRST];
 	};
 
-	inline std::uint32_t bits_per_pixel(format Format)
+	std::uint32_t bits_per_pixel(format Format)
 	{
 		detail::formatInfo const & Info = detail::get_format_info(Format);
 
@@ -292,99 +292,99 @@ namespace detail
 	}
 }//namespace detail
 
-	inline bool is_compressed(format Format)
+	bool is_compressed(format Format)
 	{
 		return detail::get_format_info(Format).Flags & detail::CAP_COMPRESSED_BIT ? true : false;
 	}
 
-	inline bool is_s3tc_compressed(format Format)
+	bool is_s3tc_compressed(format Format)
 	{
 		return Format >= FORMAT_RGB_DXT1_UNORM_BLOCK8 && Format <= FORMAT_RGBA_DXT5_SRGB_BLOCK16;
 	}
 
-	inline bool is_srgb(format Format)
+	bool is_srgb(format Format)
 	{
 		return detail::get_format_info(Format).Flags & detail::CAP_COLORSPACE_SRGB_BIT ? true : false;
 	}
 
-	inline size_t block_size(format Format)
+	size_t block_size(format Format)
 	{
 		return detail::get_format_info(Format).BlockSize;
 	}
 
-	inline ivec3 block_extent(format Format)
+	ivec3 block_extent(format Format)
 	{
 		return gli::ivec3(detail::get_format_info(Format).BlockExtent);
 	}
 
-	inline size_t component_count(format Format)
+	size_t component_count(format Format)
 	{
 		return detail::get_format_info(Format).Component;
 	}
 
-	inline bool is_unsigned(format Format)
+	bool is_unsigned(format Format)
 	{
 		return detail::get_format_info(Format).Flags & detail::CAP_UNSIGNED_BIT ? true : false;
 	}
 
-	inline bool is_signed(format Format)
+	bool is_signed(format Format)
 	{
 		return detail::get_format_info(Format).Flags & detail::CAP_SIGNED_BIT ? true : false;
 	}
 
-	inline bool is_integer(format Format)
+	bool is_integer(format Format)
 	{
 		return detail::get_format_info(Format).Flags & detail::CAP_INTEGER_BIT ? true : false;
 	}
 
-	inline bool is_signed_integer(format Format)
+	bool is_signed_integer(format Format)
 	{
 		return is_integer(Format) && is_signed(Format);
 	}
 
-	inline bool is_unsigned_integer(format Format)
+	bool is_unsigned_integer(format Format)
 	{
 		return is_integer(Format) && is_unsigned(Format);
 	}
 
-	inline bool is_float(format Format)
+	bool is_float(format Format)
 	{
 		return detail::get_format_info(Format).Flags & detail::CAP_FLOAT_BIT ? true : false;
 	}
 
-	inline bool is_normalized(format Format)
+	bool is_normalized(format Format)
 	{
 		return detail::get_format_info(Format).Flags & detail::CAP_NORMALIZED_BIT ? true : false;
 	}
 
-	inline bool is_unorm(format Format)
+	bool is_unorm(format Format)
 	{
 		return is_normalized(Format) && is_unsigned(Format);
 	}
 
-	inline bool is_snorm(format Format)
+	bool is_snorm(format Format)
 	{
 		return is_normalized(Format) && is_signed(Format);
 	}
 
-	inline bool is_packed(format Format)
+	bool is_packed(format Format)
 	{
 		uint16_t flags = detail::get_format_info(Format).Flags;
 
 		return (flags & detail::CAP_PACKED8_BIT) != 0 || (flags & detail::CAP_PACKED16_BIT) != 0 || (flags & detail::CAP_PACKED32_BIT) != 0;
 	}
 
-	inline bool is_depth(format Format)
+	bool is_depth(format Format)
 	{
 		return (detail::get_format_info(Format).Flags & detail::CAP_DEPTH_BIT) ? true : false;
 	}
 
-	inline bool is_stencil(format Format)
+	bool is_stencil(format Format)
 	{
 		return (detail::get_format_info(Format).Flags & detail::CAP_STENCIL_BIT) ? true : false;
 	}
 
-	inline bool is_depth_stencil(format Format)
+	bool is_depth_stencil(format Format)
 	{
 		return is_depth(Format) && is_stencil(Format);
 	}

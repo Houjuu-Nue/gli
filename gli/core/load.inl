@@ -6,7 +6,7 @@
 namespace gli
 {
 	/// Load a texture (DDS, KTX or KMG) from memory
-	inline texture load(char const * Data, std::size_t Size)
+	texture load(char const * Data, std::size_t Size)
 	{
 		{
 			texture Texture = load_dds(Data, Size);
@@ -28,7 +28,7 @@ namespace gli
 	}
 
 	/// Load a texture (DDS, KTX or KMG) from file
-	inline texture load(char const * Filename)
+	texture load(char const * Filename)
 	{
 		FILE* File = detail::open_file(Filename, "rb");
 		if(!File)
@@ -48,7 +48,7 @@ namespace gli
 	}
 
 	/// Load a texture (DDS, KTX or KMG) from file
-	inline texture load(std::string const & Filename)
+	texture load(std::string const & Filename)
 	{
 		return load(Filename.c_str());
 	}

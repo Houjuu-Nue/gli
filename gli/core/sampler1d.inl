@@ -4,7 +4,7 @@
 namespace gli
 {
 	template <typename T, qualifier P>
-	inline sampler1d<T, P>::sampler1d(texture_type const & Texture, wrap Wrap, filter Mip, filter Min, texel_type const & BorderColor)
+	sampler1d<T, P>::sampler1d(texture_type const & Texture, wrap Wrap, filter Mip, filter Min, texel_type const & BorderColor)
 		: sampler(Wrap, Texture.levels() > 1 ? Mip : FILTER_NEAREST, Min)
 		, Texture(Texture)
 		, Convert(detail::convert<texture_type, T, P>::call(this->Texture.format()))
@@ -17,13 +17,13 @@ namespace gli
 	}
 
 	template <typename T, qualifier P>
-	inline typename sampler1d<T, P>::texture_type const & sampler1d<T, P>::operator()() const
+	typename sampler1d<T, P>::texture_type const & sampler1d<T, P>::operator()() const
 	{
 		return this->Texture;
 	}
 
 	template <typename T, qualifier P>
-	inline typename sampler1d<T, P>::texel_type sampler1d<T, P>::texel_fetch(extent_type const & TexelCoord, size_type const & Level) const
+	typename sampler1d<T, P>::texel_type sampler1d<T, P>::texel_fetch(extent_type const & TexelCoord, size_type const & Level) const
 	{
 		GLI_ASSERT(!this->Texture.empty());
 		GLI_ASSERT(this->Convert.Fetch);
@@ -32,7 +32,7 @@ namespace gli
 	}
 
 	template <typename T, qualifier P>
-	inline void sampler1d<T, P>::texel_write(extent_type const & TexelCoord, size_type const & Level, texel_type const & Texel)
+	void sampler1d<T, P>::texel_write(extent_type const & TexelCoord, size_type const & Level, texel_type const & Texel)
 	{
 		GLI_ASSERT(!this->Texture.empty());
 		GLI_ASSERT(this->Convert.Write);
@@ -41,7 +41,7 @@ namespace gli
 	}
 
 	template <typename T, qualifier P>
-	inline void sampler1d<T, P>::clear(texel_type const & Color)
+	void sampler1d<T, P>::clear(texel_type const & Color)
 	{
 		GLI_ASSERT(!this->Texture.empty());
 		GLI_ASSERT(this->Convert.Write);
@@ -50,7 +50,7 @@ namespace gli
 	}
 
 	template <typename T, qualifier P>
-	inline typename sampler1d<T, P>::texel_type sampler1d<T, P>::texture_lod(normalized_type const & SampleCoord, level_type Level) const
+	typename sampler1d<T, P>::texel_type sampler1d<T, P>::texture_lod(normalized_type const & SampleCoord, level_type Level) const
 	{
 		GLI_ASSERT(!this->Texture.empty());
 		GLI_ASSERT(std::numeric_limits<T>::is_iec559);
@@ -61,13 +61,13 @@ namespace gli
 	}
 
 	template <typename T, qualifier P>
-	inline void sampler1d<T, P>::generate_mipmaps(filter Minification)
+	void sampler1d<T, P>::generate_mipmaps(filter Minification)
 	{
 		this->generate_mipmaps(this->Texture.base_level(), this->Texture.max_level(), Minification);
 	}
 
 	template <typename T, qualifier P>
-	inline void sampler1d<T, P>::generate_mipmaps(size_type BaseLevel, size_type MaxLevel, filter Minification)
+	void sampler1d<T, P>::generate_mipmaps(size_type BaseLevel, size_type MaxLevel, filter Minification)
 	{
 		GLI_ASSERT(!this->Texture.empty());
 		GLI_ASSERT(!is_compressed(this->Texture.format()));

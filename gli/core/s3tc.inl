@@ -4,7 +4,7 @@ namespace gli
 {
 	namespace detail
 	{
-		inline glm::vec4 decompress_dxt1(const dxt1_block &Block, const extent2d &BlockTexelCoord)
+		glm::vec4 decompress_dxt1(const dxt1_block &Block, const extent2d &BlockTexelCoord)
 		{
 			glm::vec4 Color[4];
 
@@ -28,7 +28,7 @@ namespace gli
 			return Color[ColorIndex];
 		}
 
-		inline texel_block4x4 decompress_dxt1_block(const dxt1_block &Block)
+		texel_block4x4 decompress_dxt1_block(const dxt1_block &Block)
 		{
 			glm::vec4 Color[4];
 
@@ -61,7 +61,7 @@ namespace gli
 			return TexelBlock;
 		}
 
-		inline glm::vec4 decompress_dxt3(const dxt3_block &Block, const extent2d &BlockTexelCoord)
+		glm::vec4 decompress_dxt3(const dxt3_block &Block, const extent2d &BlockTexelCoord)
 		{
 			glm::vec3 Color[4];
 
@@ -79,7 +79,7 @@ namespace gli
 			return glm::vec4(Color[ColorIndex], Alpha);
 		}
 
-		inline texel_block4x4 decompress_dxt3_block(const dxt3_block &Block)
+		texel_block4x4 decompress_dxt3_block(const dxt3_block &Block)
 		{
 			glm::vec3 Color[4];
 
@@ -105,7 +105,7 @@ namespace gli
 			return TexelBlock;
 		}
 
-		inline glm::vec4 decompress_dxt5(const dxt5_block &Block, const extent2d &BlockTexelCoord)
+		glm::vec4 decompress_dxt5(const dxt5_block &Block, const extent2d &BlockTexelCoord)
 		{
 			glm::vec3 Color[4];
 			float Alpha[8];
@@ -151,7 +151,7 @@ namespace gli
 			return glm::vec4(Color[ColorIndex], Alpha[AlphaIndex]);
 		}
 
-		inline texel_block4x4 decompress_dxt5_block(const dxt5_block &Block)
+		texel_block4x4 decompress_dxt5_block(const dxt5_block &Block)
 		{
 			glm::vec3 Color[4];
 			float Alpha[8];

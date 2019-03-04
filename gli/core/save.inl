@@ -4,12 +4,12 @@
 
 namespace gli
 {
-	inline bool save(texture const & Texture, char const * Path)
+	bool save(texture const & Texture, char const * Path)
 	{
 		return save(Texture, std::string(Path));
 	}
 
-	inline bool save(texture const & Texture, std::string const & Path)
+	bool save(texture const & Texture, std::string const & Path)
 	{
 		if(Path.rfind(".dds") != std::string::npos)
 			return save_dds(Texture, Path);

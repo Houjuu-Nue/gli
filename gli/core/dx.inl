@@ -2,7 +2,7 @@
 
 namespace gli
 {
-	inline dx::dx()
+	dx::dx()
 	{
 		static format const Table[] =
 		{
@@ -252,13 +252,13 @@ namespace gli
 		std::copy(&Table[0], &Table[0] + FORMAT_COUNT, this->Translation.begin());
 	}
 
-	inline dx::format const& dx::translate(gli::format Format) const
+	dx::format const& dx::translate(gli::format Format) const
 	{
 		GLI_ASSERT(Format >= FORMAT_FIRST && Format <= FORMAT_LAST);
 		return Translation[Format - FORMAT_FIRST];
 	}
 
-	inline gli::format dx::find(dx::d3dfmt FourCC) const
+	gli::format dx::find(dx::d3dfmt FourCC) const
 	{
 		gli::format FormatResult = gli::FORMAT_UNDEFINED;
 		for(int FormatIndex = FORMAT_FIRST; FormatIndex <= FORMAT_LAST; ++FormatIndex)
@@ -272,7 +272,7 @@ namespace gli
 		return FormatResult;
 	}
 
-	inline gli::format dx::find(dx::d3dfmt FourCC, dx::dxgiFormat Format) const
+	gli::format dx::find(dx::d3dfmt FourCC, dx::dxgiFormat Format) const
 	{
 		GLI_ASSERT(FourCC == D3DFMT_DX10 || FourCC == D3DFMT_GLI1);
 
@@ -299,7 +299,7 @@ namespace gli
 		return FormatResult;
 	}
 
-	inline bool is_dds_ext(target Target, format Format)
+	bool is_dds_ext(target Target, format Format)
 	{
 		dx DX;
 		dx::format const & DXFormat = DX.translate(Format);

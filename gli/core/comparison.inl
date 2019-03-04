@@ -3,7 +3,7 @@
 namespace gli{
 namespace detail
 {
-	inline bool equalData(texture const & TextureA, texture const & TextureB)
+	bool equalData(texture const & TextureA, texture const & TextureB)
 	{
 		GLI_ASSERT(TextureA.size() == TextureB.size());
 
@@ -24,7 +24,7 @@ namespace detail
 	}
 }//namespace detail
 
-	inline bool operator==(image const & ImageA, image const & ImageB)
+	bool operator==(image const & ImageA, image const & ImageB)
 	{
 		if(!glm::all(glm::equal(ImageA.extent(), ImageB.extent())))
 			return false;
@@ -34,7 +34,7 @@ namespace detail
 		return std::memcmp(ImageA.data(), ImageB.data(), ImageA.size()) == 0;
 	}
 
-	inline bool operator!=(image const & ImageA, image const & ImageB)
+	bool operator!=(image const & ImageA, image const & ImageB)
 	{
 		if(!glm::all(glm::equal(ImageA.extent(), ImageB.extent())))
 			return true;
@@ -44,7 +44,7 @@ namespace detail
 		return std::memcmp(ImageA.data(), ImageB.data(), ImageA.size()) != 0;
 	}
 
-	inline bool equal(texture const & TextureA, texture const & TextureB)
+	bool equal(texture const & TextureA, texture const & TextureB)
 	{
 		if(TextureA.empty() && TextureB.empty())
 			return true;
@@ -66,7 +66,7 @@ namespace detail
 		return detail::equalData(TextureA, TextureB);
 	}
 
-	inline bool notEqual(texture const & TextureA, texture const & TextureB)
+	bool notEqual(texture const & TextureA, texture const & TextureB)
 	{
 		if(TextureA.empty() && TextureB.empty())
 			return false;
@@ -88,12 +88,12 @@ namespace detail
 		return !detail::equalData(TextureA, TextureB);
 	}
 
-	inline bool operator==(texture const & A, texture const & B)
+	bool operator==(texture const & A, texture const & B)
 	{
 		return gli::equal(A, B);
 	}
 
-	inline bool operator!=(texture const & A, texture const & B)
+	bool operator!=(texture const & A, texture const & B)
 	{
 		return gli::notEqual(A, B);
 	}

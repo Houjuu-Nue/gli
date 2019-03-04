@@ -6,7 +6,7 @@
 
 namespace gli
 {
-	inline bool save_kmg(texture const & Texture, std::vector<char> & Memory)
+	bool save_kmg(texture const & Texture, std::vector<char> & Memory)
 	{
 		if(Texture.empty())
 			return false;
@@ -55,7 +55,7 @@ namespace gli
 		return true;
 	}
 
-	inline bool save_kmg(texture const & Texture, char const * Filename)
+	bool save_kmg(texture const & Texture, char const * Filename)
 	{
 		if(Texture.empty())
 			return false;
@@ -73,7 +73,7 @@ namespace gli
 		return Result;
 	}
 
-	inline bool save_kmg(texture const & Texture, std::string const & Filename)
+	bool save_kmg(texture const & Texture, std::string const & Filename)
 	{
 		return save_kmg(Texture, Filename.c_str());
 	}

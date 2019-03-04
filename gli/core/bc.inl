@@ -4,37 +4,37 @@ namespace gli
 {
 	namespace detail
 	{
-		inline glm::vec4 decompress_bc1(const bc1_block &Block, const extent2d &BlockTexelCoord)
+		glm::vec4 decompress_bc1(const bc1_block &Block, const extent2d &BlockTexelCoord)
 		{
 			return decompress_dxt1(Block, BlockTexelCoord);
 		}
 
-		inline texel_block4x4 decompress_bc1_block(const bc1_block &Block)
+		texel_block4x4 decompress_bc1_block(const bc1_block &Block)
 		{
 			return decompress_dxt1_block(Block);
 		}
 
-		inline glm::vec4 decompress_bc2(const bc2_block &Block, const extent2d &BlockTexelCoord)
+		glm::vec4 decompress_bc2(const bc2_block &Block, const extent2d &BlockTexelCoord)
 		{
 			return decompress_dxt3(Block, BlockTexelCoord);
 		}
 
-		inline texel_block4x4 decompress_bc2_block(const bc2_block &Block)
+		texel_block4x4 decompress_bc2_block(const bc2_block &Block)
 		{
 			return decompress_dxt3_block(Block);
 		}
 
-		inline glm::vec4 decompress_bc3(const bc3_block &Block, const extent2d &BlockTexelCoord)
+		glm::vec4 decompress_bc3(const bc3_block &Block, const extent2d &BlockTexelCoord)
 		{
 			return decompress_dxt5(Block, BlockTexelCoord);
 		}
 
-		inline texel_block4x4 decompress_bc3_block(const bc3_block &Block)
+		texel_block4x4 decompress_bc3_block(const bc3_block &Block)
 		{
 			return decompress_dxt5_block(Block);
 		}
 
-		inline void create_single_channel_lookup_table(bool Interpolate6, float Min, float *LookupTable)
+		void create_single_channel_lookup_table(bool Interpolate6, float Min, float *LookupTable)
 		{
 			if(Interpolate6)
 			{
@@ -56,7 +56,7 @@ namespace gli
 			}
 		}
 
-		inline void single_channel_bitmap_data_unorm(uint8_t Channel0, uint8_t Channel1, const uint8_t *ChannelBitmap, float *LookupTable, uint64_t &ContiguousBitmap)
+		void single_channel_bitmap_data_unorm(uint8_t Channel0, uint8_t Channel1, const uint8_t *ChannelBitmap, float *LookupTable, uint64_t &ContiguousBitmap)
 		{
 			LookupTable[0] = Channel0 / 255.0f;
 			LookupTable[1] = Channel1 / 255.0f;
@@ -67,7 +67,7 @@ namespace gli
 			ContiguousBitmap |= uint64_t(ChannelBitmap[3] | (ChannelBitmap[4] << 8) | (ChannelBitmap[5] << 16)) << 24;
 		}
 
-		inline void single_channel_bitmap_data_snorm(uint8_t Channel0, uint8_t Channel1, const uint8_t *ChannelBitmap, float *LookupTable, uint64_t &ContiguousBitmap)
+		void single_channel_bitmap_data_snorm(uint8_t Channel0, uint8_t Channel1, const uint8_t *ChannelBitmap, float *LookupTable, uint64_t &ContiguousBitmap)
 		{
 			LookupTable[0] = (Channel0 / 255.0f) * 2.0f - 1.0f;
 			LookupTable[1] = (Channel1 / 255.0f) * 2.0f - 1.0f;
@@ -78,7 +78,7 @@ namespace gli
 			ContiguousBitmap |= uint64_t(ChannelBitmap[3] | (ChannelBitmap[4] << 8) | (ChannelBitmap[5] << 16)) << 24;
 		}
 
-		inline void single_channel_bitmap_data_snorm(uint8_t Channel0, uint32_t Channel1, bool Interpolate6, const uint8_t *ChannelBitmap, float *LookupTable, uint64_t &ContiguousBitmap)
+		void single_channel_bitmap_data_snorm(uint8_t Channel0, uint32_t Channel1, bool Interpolate6, const uint8_t *ChannelBitmap, float *LookupTable, uint64_t &ContiguousBitmap)
 		{
 			LookupTable[0] = (Channel0 / 255.0f) * 2.0f - 1.0f;
 			LookupTable[1] = (Channel1 / 255.0f) * 2.0f - 1.0f;
@@ -89,7 +89,7 @@ namespace gli
 			ContiguousBitmap |= uint64_t(ChannelBitmap[3] | (ChannelBitmap[4] << 8) | (ChannelBitmap[5] << 16)) << 24;
 		}
 
-		inline glm::vec4 decompress_bc4unorm(const bc4_block &Block, const extent2d &BlockTexelCoord)
+		glm::vec4 decompress_bc4unorm(const bc4_block &Block, const extent2d &BlockTexelCoord)
 		{
 			float RedLUT[8];
 			uint64_t Bitmap;
@@ -100,7 +100,7 @@ namespace gli
 			return glm::vec4(RedLUT[RedIndex], 0.0f, 0.0f, 1.0f);
 		}
 
-		inline glm::vec4 decompress_bc4snorm(const bc4_block &Block, const extent2d &BlockTexelCoord)
+		glm::vec4 decompress_bc4snorm(const bc4_block &Block, const extent2d &BlockTexelCoord)
 		{
 			float RedLUT[8];
 			uint64_t Bitmap;
@@ -111,7 +111,7 @@ namespace gli
 			return glm::vec4(RedLUT[RedIndex], 0.0f, 0.0f, 1.0f);
 		}
 
-		inline texel_block4x4 decompress_bc4unorm_block(const bc4_block &Block)
+		texel_block4x4 decompress_bc4unorm_block(const bc4_block &Block)
 		{
 			float RedLUT[8];
 			uint64_t Bitmap;
@@ -131,7 +131,7 @@ namespace gli
 			return TexelBlock;
 		}
 
-		inline texel_block4x4 decompress_bc4snorm_block(const bc4_block &Block)
+		texel_block4x4 decompress_bc4snorm_block(const bc4_block &Block)
 		{
 			float RedLUT[8];
 			uint64_t Bitmap;
@@ -151,7 +151,7 @@ namespace gli
 			return TexelBlock;
 		}
 
-		inline glm::vec4 decompress_bc5unorm(const bc5_block &Block, const extent2d &BlockTexelCoord)
+		glm::vec4 decompress_bc5unorm(const bc5_block &Block, const extent2d &BlockTexelCoord)
 		{
 			float RedLUT[8];
 			uint64_t RedBitmap;
@@ -168,7 +168,7 @@ namespace gli
 			return glm::vec4(RedLUT[RedIndex], GreenLUT[GreenIndex], 0.0f, 1.0f);
 		}
 
-		inline glm::vec4 decompress_bc5snorm(const bc5_block &Block, const extent2d &BlockTexelCoord)
+		glm::vec4 decompress_bc5snorm(const bc5_block &Block, const extent2d &BlockTexelCoord)
 		{
 			float RedLUT[8];
 			uint64_t RedBitmap;
@@ -185,7 +185,7 @@ namespace gli
 			return glm::vec4(RedLUT[RedIndex], GreenLUT[GreenIndex], 0.0f, 1.0f);
 		}
 
-		inline texel_block4x4 decompress_bc5unorm_block(const bc5_block &Block)
+		texel_block4x4 decompress_bc5unorm_block(const bc5_block &Block)
 		{
 			float RedLUT[8];
 			uint64_t RedBitmap;
@@ -211,7 +211,7 @@ namespace gli
 			return TexelBlock;
 		}
 
-		inline texel_block4x4 decompress_bc5snorm_block(const bc5_block &Block)
+		texel_block4x4 decompress_bc5snorm_block(const bc5_block &Block)
 		{
 			float RedLUT[8];
 			uint64_t RedBitmap;

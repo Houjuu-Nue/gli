@@ -1,7 +1,7 @@
 namespace gli{
 namespace detail
 {
-	inline void duplicate_images
+	void duplicate_images
 	(
 		texture const & Src, texture & Dst,
 		texture::size_type BaseLayer, texture::size_type MaxLayer,
@@ -28,7 +28,7 @@ namespace detail
 	}
 }//namespace detail
 
-	inline image duplicate(image const & Image)
+	image duplicate(image const & Image)
 	{
 		image Result(Image.format(), Image.extent());
 
@@ -38,7 +38,7 @@ namespace detail
 	}
 
 	template <>
-	inline texture duplicate(texture const & Texture)
+	texture duplicate(texture const & Texture)
 	{
 		texture Duplicate(
 			Texture.target(),
@@ -58,7 +58,7 @@ namespace detail
 	}
 
 	template <typename texType>
-	inline texture duplicate(texType const & Texture)
+	texture duplicate(texType const & Texture)
 	{
 		texture Duplicate(
 			Texture.target(),
@@ -78,7 +78,7 @@ namespace detail
 	}
 
 	template <typename texType>
-	inline texture duplicate(texType const & Texture, typename texType::format_type Format)
+	texture duplicate(texType const & Texture, typename texType::format_type Format)
 	{
 		GLI_ASSERT(block_size(Texture.format()) == block_size(Format));
 
@@ -99,7 +99,7 @@ namespace detail
 		return Duplicate;
 	}
 
-	inline texture duplicate
+	texture duplicate
 	(
 		texture1d const & Texture,
 		texture1d::size_type BaseLevel, texture1d::size_type MaxLevel
@@ -119,7 +119,7 @@ namespace detail
 		return Duplicate;
 	}
 
-	inline texture duplicate
+	texture duplicate
 	(
 		texture1d_array const & Texture,
 		texture1d_array::size_type BaseLayer, texture1d_array::size_type MaxLayer,
@@ -145,7 +145,7 @@ namespace detail
 		return Duplicate;
 	}
 
-	inline texture duplicate
+	texture duplicate
 	(
 		texture2d const & Texture,
 		texture2d::size_type BaseLevel, texture2d::size_type MaxLevel
@@ -165,7 +165,7 @@ namespace detail
 		return Duplicate;
 	}
 
-	inline texture duplicate
+	texture duplicate
 	(
 		texture2d_array const & Texture,
 		texture2d_array::size_type BaseLayer, texture2d_array::size_type MaxLayer,
@@ -191,7 +191,7 @@ namespace detail
 		return Duplicate;
 	}
 
-	inline texture duplicate
+	texture duplicate
 	(
 		texture3d const & Texture,
 		texture3d::size_type BaseLevel, texture3d::size_type MaxLevel
@@ -211,7 +211,7 @@ namespace detail
 		return Duplicate;
 	}
 
-	inline texture duplicate
+	texture duplicate
 	(
 		texture_cube const & Texture,
 		texture_cube::size_type BaseFace, texture_cube::size_type MaxFace,
@@ -234,7 +234,7 @@ namespace detail
 		return Duplicate;
 	}
 
-	inline texture duplicate
+	texture duplicate
 	(
 		texture_cube_array const & Texture,
 		texture_cube_array::size_type BaseLayer, texture_cube_array::size_type MaxLayer,

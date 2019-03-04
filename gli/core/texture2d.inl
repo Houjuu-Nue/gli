@@ -2,22 +2,22 @@
 
 namespace gli
 {
-	inline texture2d::texture2d()
+	texture2d::texture2d()
 	{}
 
-	inline texture2d::texture2d(format_type Format, extent_type const& Extent, swizzles_type const& Swizzles)
+	texture2d::texture2d(format_type Format, extent_type const& Extent, swizzles_type const& Swizzles)
 		: texture(TARGET_2D, Format, texture::extent_type(Extent, 1), 1, 1, gli::levels(Extent), Swizzles)
 	{}
 
-	inline texture2d::texture2d(format_type Format, extent_type const& Extent, size_type Levels, swizzles_type const& Swizzles)
+	texture2d::texture2d(format_type Format, extent_type const& Extent, size_type Levels, swizzles_type const& Swizzles)
 		: texture(TARGET_2D, Format, texture::extent_type(Extent, 1), 1, 1, Levels, Swizzles)
 	{}
 
-	inline texture2d::texture2d(texture const& Texture)
+	texture2d::texture2d(texture const& Texture)
 		: texture(Texture, TARGET_2D, Texture.format())
 	{}
 
-	inline texture2d::texture2d
+	texture2d::texture2d
 	(
 		texture const& Texture,
 		format_type Format,
@@ -34,7 +34,7 @@ namespace gli
 			Swizzles)
 	{}
 
-	inline texture2d::texture2d
+	texture2d::texture2d
 	(
 		texture2d const& Texture,
 		size_type BaseLevel, size_type MaxLevel
@@ -46,7 +46,7 @@ namespace gli
 			Texture.base_level() + BaseLevel, Texture.base_level() + MaxLevel)
 	{}
 
-	inline image texture2d::operator[](size_type Level) const
+	image texture2d::operator[](size_type Level) const
 	{
 		GLI_ASSERT(Level < this->levels());
 
@@ -58,19 +58,19 @@ namespace gli
 			this->base_level() + Level);
 	}
 
-	inline texture2d::extent_type texture2d::extent(size_type Level) const
+	texture2d::extent_type texture2d::extent(size_type Level) const
 	{
 		return extent_type(this->texture::extent(Level));
 	}
 
 	template <typename gen_type>
-	inline gen_type texture2d::load(extent_type const& TexelCoord, size_type Level) const
+	gen_type texture2d::load(extent_type const& TexelCoord, size_type Level) const
 	{
 		return this->texture::load<gen_type>(texture::extent_type(TexelCoord, 0), 0, 0, Level);
 	}
 
 	template <typename gen_type>
-	inline void texture2d::store(extent_type const& TexelCoord, size_type Level, gen_type const& Texel)
+	void texture2d::store(extent_type const& TexelCoord, size_type Level, gen_type const& Texel)
 	{
 		this->texture::store<gen_type>(texture::extent_type(TexelCoord, 0), 0, 0, Level, Texel);
 	}

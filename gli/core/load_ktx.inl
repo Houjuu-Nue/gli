@@ -26,7 +26,7 @@ namespace detail
 		std::uint32_t BytesOfKeyValueData;
 	};
 
-	inline target get_target(ktx_header10 const& Header)
+	target get_target(ktx_header10 const& Header)
 	{
 		if(Header.NumberOfFaces > 1)
 		{
@@ -50,7 +50,7 @@ namespace detail
 			return TARGET_2D;
 	}
 
-	inline texture load_ktx10(char const* Data, std::size_t Size)
+	texture load_ktx10(char const* Data, std::size_t Size)
 	{
 		detail::ktx_header10 const & Header(*reinterpret_cast<detail::ktx_header10 const*>(Data));
 
@@ -98,7 +98,7 @@ namespace detail
 	}
 }//namespace detail
 
-	inline texture load_ktx(char const* Data, std::size_t Size)
+	texture load_ktx(char const* Data, std::size_t Size)
 	{
 		GLI_ASSERT(Data && (Size >= sizeof(detail::ktx_header10)));
 
@@ -111,7 +111,7 @@ namespace detail
 		return texture();
 	}
 
-	inline texture load_ktx(char const* Filename)
+	texture load_ktx(char const* Filename)
 	{
 		FILE* File = detail::open_file(Filename, "rb");
 		if(!File)
@@ -130,7 +130,7 @@ namespace detail
 		return load_ktx(&Data[0], Data.size());
 	}
 
-	inline texture load_ktx(std::string const& Filename)
+	texture load_ktx(std::string const& Filename)
 	{
 		return load_ktx(Filename.c_str());
 	}

@@ -16,7 +16,7 @@ namespace gli
 
 namespace detail
 {
-	inline bool are_compatible(texture const& A, texture const& B)
+	bool are_compatible(texture const& A, texture const& B)
 	{
 		return all(equal(A.extent(), B.extent())) && A.levels() == B.levels() && A.faces() == B.faces() && A.layers() == B.layers();
 	}
@@ -489,43 +489,43 @@ namespace detail
 }//namepsace detail
 
 template <typename vec_type>
-inline vec_type reduce(texture1d const& In0, texture1d const& In1, typename reduce_func<vec_type>::type TexelFunc, typename reduce_func<vec_type>::type ReduceFunc)
+vec_type reduce(texture1d const& In0, texture1d const& In1, typename reduce_func<vec_type>::type TexelFunc, typename reduce_func<vec_type>::type ReduceFunc)
 {
 	return detail::compute_reduce_1d<vec_type>::call(In0, In1, TexelFunc, ReduceFunc);
 }
 
 template <typename vec_type>
-inline vec_type reduce(texture1d_array const& In0, texture1d_array const& In1, typename reduce_func<vec_type>::type TexelFunc, typename reduce_func<vec_type>::type ReduceFunc)
+vec_type reduce(texture1d_array const& In0, texture1d_array const& In1, typename reduce_func<vec_type>::type TexelFunc, typename reduce_func<vec_type>::type ReduceFunc)
 {
 	return detail::compute_reduce_1d_array<vec_type>::call(In0, In1, TexelFunc, ReduceFunc);
 }
 
 template <typename vec_type>
-inline vec_type reduce(texture2d const& In0, texture2d const& In1, typename reduce_func<vec_type>::type TexelFunc, typename reduce_func<vec_type>::type ReduceFunc)
+vec_type reduce(texture2d const& In0, texture2d const& In1, typename reduce_func<vec_type>::type TexelFunc, typename reduce_func<vec_type>::type ReduceFunc)
 {
 	return detail::compute_reduce_2d<vec_type>::call(In0, In1, TexelFunc, ReduceFunc);
 }
 
 template <typename vec_type>
-inline vec_type reduce(texture2d_array const& In0, texture2d_array const& In1, typename reduce_func<vec_type>::type TexelFunc, typename reduce_func<vec_type>::type ReduceFunc)
+vec_type reduce(texture2d_array const& In0, texture2d_array const& In1, typename reduce_func<vec_type>::type TexelFunc, typename reduce_func<vec_type>::type ReduceFunc)
 {
 	return detail::compute_reduce_2d_array<vec_type>::call(In0, In1, TexelFunc, ReduceFunc);
 }
 
 template <typename vec_type>
-inline vec_type reduce(texture3d const& In0, texture3d const& In1, typename reduce_func<vec_type>::type TexelFunc, typename reduce_func<vec_type>::type ReduceFunc)
+vec_type reduce(texture3d const& In0, texture3d const& In1, typename reduce_func<vec_type>::type TexelFunc, typename reduce_func<vec_type>::type ReduceFunc)
 {
 	return detail::compute_reduce_3d<vec_type>::call(In0, In1, TexelFunc, ReduceFunc);
 }
 
 template <typename vec_type>
-inline vec_type reduce(texture_cube const& In0, texture_cube const& In1, typename reduce_func<vec_type>::type TexelFunc, typename reduce_func<vec_type>::type ReduceFunc)
+vec_type reduce(texture_cube const& In0, texture_cube const& In1, typename reduce_func<vec_type>::type TexelFunc, typename reduce_func<vec_type>::type ReduceFunc)
 {
 	return detail::compute_reduce_cube<vec_type>::call(In0, In1, TexelFunc, ReduceFunc);
 }
 
 template <typename vec_type>
-inline vec_type reduce(texture_cube_array const& In0, texture_cube_array const& In1, typename reduce_func<vec_type>::type TexelFunc, typename reduce_func<vec_type>::type ReduceFunc)
+vec_type reduce(texture_cube_array const& In0, texture_cube_array const& In1, typename reduce_func<vec_type>::type TexelFunc, typename reduce_func<vec_type>::type ReduceFunc)
 {
 	return detail::compute_reduce_cube_array<vec_type>::call(In0, In1, TexelFunc, ReduceFunc);
 }

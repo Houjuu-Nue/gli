@@ -214,43 +214,43 @@ namespace detail
 }//namepsace detail
 	
 	template <typename vec_type>
-	inline void transform(texture1d& Out, texture1d const& In0, texture1d const& In1, typename transform_func<vec_type>::type Func)
+	void transform(texture1d& Out, texture1d const& In0, texture1d const& In1, typename transform_func<vec_type>::type Func)
 	{
 		detail::compute_transform_1d<vec_type>::call(Out, In0, In1, Func);
 	}
 	
 	template <typename vec_type>
-	inline void transform(texture1d_array& Out, texture1d_array const& In0, texture1d_array const& In1, typename transform_func<vec_type>::type Func)
+	void transform(texture1d_array& Out, texture1d_array const& In0, texture1d_array const& In1, typename transform_func<vec_type>::type Func)
 	{
 		detail::compute_transform_1d_array<vec_type>::call(Out, In0, In1, Func);
 	}
 	
 	template <typename vec_type>
-	inline void transform(texture2d& Out, texture2d const& In0, texture2d const& In1, typename transform_func<vec_type>::type Func)
+	void transform(texture2d& Out, texture2d const& In0, texture2d const& In1, typename transform_func<vec_type>::type Func)
 	{
 		detail::compute_transform_2d<vec_type>::call(Out, In0, In1, Func);
 	}
 	
 	template <typename vec_type>
-	inline void transform(texture2d_array& Out, texture2d_array const& In0, texture2d_array const& In1, typename transform_func<vec_type>::type Func)
+	void transform(texture2d_array& Out, texture2d_array const& In0, texture2d_array const& In1, typename transform_func<vec_type>::type Func)
 	{
 		detail::compute_transform_2d_array<vec_type>::call(Out, In0, In1, Func);
 	}
 	
 	template <typename vec_type>
-	inline void transform(texture3d& Out, texture3d const& In0, texture3d const& In1, typename transform_func<vec_type>::type Func)
+	void transform(texture3d& Out, texture3d const& In0, texture3d const& In1, typename transform_func<vec_type>::type Func)
 	{
 		detail::compute_transform_3d<vec_type>::call(Out, In0, In1, Func);
 	}
 	
 	template <typename vec_type>
-	inline void transform(texture_cube& Out, texture_cube const& In0, texture_cube const& In1, typename transform_func<vec_type>::type Func)
+	void transform(texture_cube& Out, texture_cube const& In0, texture_cube const& In1, typename transform_func<vec_type>::type Func)
 	{
 		detail::compute_transform_cube<vec_type>::call(Out, In0, In1, Func);
 	}
 	
 	template <typename vec_type>
-	inline void transform(texture_cube_array& Out, texture_cube_array const& In0, texture_cube_array const& In1, typename transform_func<vec_type>::type Func)
+	void transform(texture_cube_array& Out, texture_cube_array const& In0, texture_cube_array const& In1, typename transform_func<vec_type>::type Func)
 	{
 		detail::compute_transform_cube_array<vec_type>::call(Out, In0, In1, Func);
 	}

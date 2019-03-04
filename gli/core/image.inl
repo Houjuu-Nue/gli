@@ -1,7 +1,7 @@
 namespace gli{
 namespace detail
 {
-	inline size_t texel_linear_addressing
+	size_t texel_linear_addressing
 	(
 		extent1d const& Extent,
 		extent1d const& TexelCoord
@@ -12,7 +12,7 @@ namespace detail
 		return static_cast<size_t>(TexelCoord.x);
 	}
 
-	inline size_t texel_linear_addressing
+	size_t texel_linear_addressing
 	(
 		extent2d const& Extent,
 		extent2d const& TexelCoord
@@ -24,7 +24,7 @@ namespace detail
 		return static_cast<size_t>(TexelCoord.x + Extent.x * TexelCoord.y);
 	}
 
-	inline size_t texel_linear_addressing
+	size_t texel_linear_addressing
 	(
 		extent3d const& Extent,
 		extent3d const& TexelCoord
@@ -37,7 +37,7 @@ namespace detail
 		return static_cast<size_t>(TexelCoord.x + Extent.x * (TexelCoord.y + Extent.y * TexelCoord.z));
 	}
 
-	inline size_t texel_morton_addressing
+	size_t texel_morton_addressing
 	(
 		extent1d const& Extent,
 		extent1d const& TexelCoord
@@ -48,7 +48,7 @@ namespace detail
 		return TexelCoord.x;
 	}
 
-	inline size_t texel_morton_addressing
+	size_t texel_morton_addressing
 	(
 		extent2d const& Extent,
 		extent2d const& TexelCoord
@@ -62,7 +62,7 @@ namespace detail
 		return static_cast<size_t>(glm::bitfieldInterleave(Input.x, Input.y));
 	}
 
-	inline size_t texel_morton_addressing
+	size_t texel_morton_addressing
 	(
 		extent3d const& Extent,
 		extent3d const& TexelCoord
@@ -78,14 +78,14 @@ namespace detail
 	}
 }//namespace detail
 
-	inline image::image()
+	image::image()
 		: Format(gli::FORMAT_UNDEFINED)
 		, BaseLevel(0)
 		, Data(nullptr)
 		, Size(0)
 	{}
 
-	inline image::image
+	image::image
 	(
 		format_type Format,
 		extent_type const& Extent
@@ -97,7 +97,7 @@ namespace detail
 		, Size(compute_size(0))
 	{}
 
-	inline image::image
+	image::image
 	(
 		std::shared_ptr<storage_linear> Storage,
 		format_type Format,
@@ -112,7 +112,7 @@ namespace detail
 		, Size(compute_size(BaseLevel))
 	{}
 
-	inline image::image
+	image::image
 	(
 		image const & Image,
 		format_type Format
@@ -126,7 +126,7 @@ namespace detail
 		GLI_ASSERT(block_size(Format) == block_size(Image.format()));
 	}
 
-	inline bool image::empty() const
+	bool image::empty() const
 	{
 		if(this->Storage.get() == nullptr)
 			return true;
@@ -134,7 +134,7 @@ namespace detail
 		return this->Storage->empty();
 	}
 
-	inline image::size_type image::size() const
+	image::size_type image::size() const
 	{
 		GLI_ASSERT(!this->empty());
 
@@ -142,19 +142,19 @@ namespace detail
 	}
 
 	template <typename genType>
-	inline image::size_type image::size() const
+	image::size_type image::size() const
 	{
 		GLI_ASSERT(sizeof(genType) <= this->Storage->block_size());
 
 		return this->size() / sizeof(genType);
 	}
 
-	inline image::format_type image::format() const
+	image::format_type image::format() const
 	{
 		return this->Format;
 	}
 
-	inline image::extent_type image::extent() const
+	image::extent_type image::extent() const
 	{
 		GLI_ASSERT(!this->empty());
 
@@ -164,14 +164,14 @@ namespace detail
 		return glm::max(DstExtent, storage_linear::extent_type(1));
 	}
 
-	inline void* image::data()
+	void* image::data()
 	{
 		GLI_ASSERT(!this->empty());
 
 		return this->Data;
 	}
 
-	inline void const* image::data() const
+	void const* image::data() const
 	{
 		GLI_ASSERT(!this->empty());
 
@@ -179,7 +179,7 @@ namespace detail
 	}
 
 	template <typename genType>
-	inline genType* image::data()
+	genType* image::data()
 	{
 		GLI_ASSERT(!this->empty());
 		GLI_ASSERT(this->Storage->block_size() >= sizeof(genType));
@@ -188,7 +188,7 @@ namespace detail
 	}
 
 	template <typename genType>
-	inline genType const* image::data() const
+	genType const* image::data() const
 	{
 		GLI_ASSERT(!this->empty());
 		GLI_ASSERT(this->Storage->block_size() >= sizeof(genType));
@@ -196,7 +196,7 @@ namespace detail
 		return reinterpret_cast<genType const *>(this->data());
 	}
 
-	inline void image::clear()
+	void image::clear()
 	{
 		GLI_ASSERT(!this->empty());
 
@@ -204,7 +204,7 @@ namespace detail
 	}
 
 	template <typename genType>
-	inline void image::clear(genType const& Texel)
+	void image::clear(genType const& Texel)
 	{
 		GLI_ASSERT(!this->empty());
 		GLI_ASSERT(this->Storage->block_size() == sizeof(genType));
@@ -213,14 +213,14 @@ namespace detail
 			*(this->data<genType>() + TexelIndex) = Texel;
 	}
 
-	inline image::data_type* image::compute_data(size_type BaseLayer, size_type BaseFace, size_type BaseLevel)
+	image::data_type* image::compute_data(size_type BaseLayer, size_type BaseFace, size_type BaseLevel)
 	{
 		size_type const BaseOffset = this->Storage->base_offset(BaseLayer, BaseFace, BaseLevel);
 
 		return this->Storage->data() + BaseOffset;
 	}
 
-	inline image::size_type image::compute_size(size_type Level) const
+	image::size_type image::compute_size(size_type Level) const
 	{
 		GLI_ASSERT(!this->empty());
 

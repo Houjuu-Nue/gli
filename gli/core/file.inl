@@ -5,7 +5,7 @@
 namespace gli{
 namespace detail
 {
-	inline FILE* open_file(const char *Filename, const char *Mode)
+	FILE* open_file(const char *Filename, const char *Mode)
 	{
 #		if GLM_COMPILER & GLM_COMPILER_VC
 			FILE *File = nullptr;

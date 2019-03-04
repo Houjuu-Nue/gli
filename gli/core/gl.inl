@@ -3,7 +3,7 @@
 namespace gli{
 namespace detail
 {
-	inline gl::swizzles translate(gli::swizzles const& Swizzles)
+	gl::swizzles translate(gli::swizzles const& Swizzles)
 	{
 		static gl::swizzle const Table[] =
 		{
@@ -26,7 +26,7 @@ namespace detail
 	};
 }//namespace detail
 
-	inline gl::gl(profile Profile)
+	gl::gl(profile Profile)
 		: Profile(Profile)
 	{
 		bool const HasSwizzle = has_swizzle(Profile);
@@ -304,7 +304,7 @@ namespace detail
 		std::copy(&Table[0], &Table[0] + FORMAT_COUNT, this->FormatDesc.begin());
 	}
 
-	inline gl::target const& gl::translate(gli::target Target) const
+	gl::target const& gl::translate(gli::target Target) const
 	{
 		static gl::target const Table[] =
 		{
@@ -323,7 +323,7 @@ namespace detail
 		return Table[Target];
 	}
 
-	inline gl::format gl::translate(gli::format Format, gli::swizzles const& Swizzles) const
+	gl::format gl::translate(gli::format Format, gli::swizzles const& Swizzles) const
 	{
 		GLI_ASSERT(Format >= FORMAT_FIRST && Format <= FORMAT_LAST);
 
@@ -337,7 +337,7 @@ namespace detail
 		return FormatGL;
 	}
 
-	inline gli::format gl::find(gl::internal_format InternalFormat, gl::external_format ExternalFormat, gl::type_format Type)
+	gli::format gl::find(gl::internal_format InternalFormat, gl::external_format ExternalFormat, gl::type_format Type)
 	{
 		for(int FormatIndex = FORMAT_FIRST; FormatIndex <= FORMAT_LAST; ++FormatIndex)
 		{
@@ -354,7 +354,7 @@ namespace detail
 		return gli::FORMAT_UNDEFINED;
 	}
 
-	inline gl::swizzles gl::compute_swizzle(format_desc const& FormatDesc, gli::swizzles const& Swizzles) const
+	gl::swizzles gl::compute_swizzle(format_desc const& FormatDesc, gli::swizzles const& Swizzles) const
 	{
 		if (!this->has_swizzle(this->Profile))
 			return swizzles(gl::SWIZZLE_RED, gl::SWIZZLE_GREEN, gl::SWIZZLE_BLUE, gl::SWIZZLE_ALPHA);

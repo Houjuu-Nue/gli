@@ -5,7 +5,7 @@
 namespace gli{
 namespace detail
 {
-	inline d3d10_resource_dimension get_dimension(gli::target Target)
+	d3d10_resource_dimension get_dimension(gli::target Target)
 	{
 		static d3d10_resource_dimension Table[] = //TARGET_COUNT
 		{
@@ -24,7 +24,7 @@ namespace detail
 		return Table[Target];
 	}
 	
-	inline dx::d3dfmt get_fourcc(bool RequireDX10Header, gli::format Format, dx::format const& DXFormat)
+	dx::d3dfmt get_fourcc(bool RequireDX10Header, gli::format Format, dx::format const& DXFormat)
 	{
 		if(RequireDX10Header)
 		{
@@ -42,7 +42,7 @@ namespace detail
 	}
 }//namespace detail
 
-	inline bool save_dds(texture const& Texture, std::vector<char>& Memory)
+	bool save_dds(texture const& Texture, std::vector<char>& Memory)
 	{
 		if(Texture.empty())
 			return false;
@@ -114,7 +114,7 @@ namespace detail
 		return true;
 	}
 
-	inline bool save_dds(texture const& Texture, char const* Filename)
+	bool save_dds(texture const& Texture, char const* Filename)
 	{
 		if(Texture.empty())
 			return false;
@@ -132,7 +132,7 @@ namespace detail
 		return Result;
 	}
 
-	inline bool save_dds(texture const& Texture, std::string const& Filename)
+	bool save_dds(texture const& Texture, std::string const& Filename)
 	{
 		return save_dds(Texture, Filename.c_str());
 	}

@@ -6,7 +6,7 @@
 namespace gli{
 namespace detail
 {
-	inline texture::size_type compute_ktx_storage_size(texture const & Texture)
+	texture::size_type compute_ktx_storage_size(texture const & Texture)
 	{
 		texture::size_type const BlockSize = block_size(Texture.format());
 		texture::size_type TotalSize = sizeof(detail::FOURCC_KTX10) + sizeof(detail::ktx_header10);
@@ -29,7 +29,7 @@ namespace detail
 	}
 }//namespace detail
 
-	inline bool save_ktx(texture const& Texture, std::vector<char>& Memory)
+	bool save_ktx(texture const& Texture, std::vector<char>& Memory)
 	{
 		if(Texture.empty())
 			return false;
@@ -89,7 +89,7 @@ namespace detail
 		return true;
 	}
 
-	inline bool save_ktx(texture const& Texture, char const* Filename)
+	bool save_ktx(texture const& Texture, char const* Filename)
 	{
 		if(Texture.empty())
 			return false;
@@ -107,7 +107,7 @@ namespace detail
 		return Result;
 	}
 
-	inline bool save_ktx(texture const& Texture, std::string const& Filename)
+	bool save_ktx(texture const& Texture, std::string const& Filename)
 	{
 		return save_ktx(Texture, Filename.c_str());
 	}
