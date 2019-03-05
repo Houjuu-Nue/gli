@@ -193,8 +193,8 @@ namespace gli
 		template <typename gen_type>
 		void store(extent_type const& TexelCoord, size_type Layer, size_type Face, size_type Level, gen_type const& Texel);
 
-	protected:
 		std::shared_ptr<storage_type> Storage;
+	protected:
 		target_type Target;
 		format_type Format;
 		size_type BaseLayer;

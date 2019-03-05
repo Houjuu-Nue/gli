@@ -4,6 +4,7 @@
 #pragma once
 
 #include "./core/storage_linear.hpp"
+#include "./texture.hpp"
 
 namespace gli
 {
@@ -32,6 +33,8 @@ namespace gli
 		/// with a different compatible image format.
 		/// For formats to be compatible, the block size of source and destination must match.
 		explicit image(image const& Image, format_type Format);
+
+		explicit image(texture const& Texture, format_type Format, size_type BaseLayer, size_type BaseFace, size_type BaseLevel);
 
 		/// Return whether the image instance is empty, no storage_linear or description have been assigned to the instance.
 		bool empty() const;

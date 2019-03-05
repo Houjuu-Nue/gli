@@ -112,6 +112,20 @@ namespace detail
 		, Size(compute_size(BaseLevel))
 	{}
 
+	image::image(
+		texture const& Texture,
+		format_type Format,
+		size_type BaseLayer,
+		size_type BaseFace,
+		size_type BaseLevel
+	)
+		: Storage(Texture.Storage)
+		, Format(Format)
+		, BaseLevel(BaseLevel)
+		, Data(compute_data(BaseLayer, BaseFace, BaseLevel))
+		, Size(compute_size(BaseLevel))
+	{}
+
 	image::image
 	(
 		image const & Image,
