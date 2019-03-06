@@ -95,8 +95,7 @@ namespace gli
 		void store(extent_type const& TexelCoord, genType const& Data);
 
 		bool is_print_shared_storage_count = false;
-		void print_shared_storage_count() const;
-		void set_shared_print(bool is_print);
+		int get_shared_storage_count() const;
 	private:
 		/// Create an image object by sharing an existing image storage_linear from another image instance.
 		/// This image object is effectively an image view where the layer, the face and the level allows identifying

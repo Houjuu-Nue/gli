@@ -202,8 +202,7 @@ namespace gli
 		std::shared_ptr<storage_type> Storage;
 
 		bool is_print_shared_storage_count = false;
-		void print_shared_storage_count() const;
-		void set_shared_print(bool is_print);
+		int get_shared_storage_count() const;
 
 	protected:
 		target_type Target;

@@ -407,14 +407,8 @@ namespace gli
 		*(this->data<gen_type>(Layer, Face, Level) + ImageOffset) = Texel;
 	}
 
-	void texture::print_shared_storage_count() const {
-
-		auto count = this->Storage.use_count();
-		std::cout << "Texture storage shared count: " << count << std::endl;
-	}
-
-	void texture::set_shared_print(bool is_print) {
-		this->is_print_shared_storage_count = is_print;
+	int texture::get_shared_storage_count() const {
+		return static_cast<int>(this->Storage.use_count());
 	}
 
 	void destroy_texture(texture && Texture) {
