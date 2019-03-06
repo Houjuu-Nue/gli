@@ -263,6 +263,16 @@ namespace detail
 		*(this->data<genType>() + detail::texel_linear_addressing(this->extent(), TexelCoord)) = Data;
 	}
 
+	void image::print_shared_storage_count() const {
+
+		auto count = this->Storage.use_count();
+		std::cout << "Image storage shared count: " << count << std::endl;
+	}
+
+	void image::set_shared_print(bool is_print) {
+		this->is_print_shared_storage_count = is_print;
+	}
+
 	void destroy_image(image && Image) {
 		Image.~image();
 	}

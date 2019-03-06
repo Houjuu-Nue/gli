@@ -7,6 +7,7 @@
 #include "target.hpp"
 #include "levels.hpp"
 #include <array>
+#include <iostream>
 
 namespace gli
 {
@@ -65,7 +66,12 @@ namespace gli
 			format_type Format,
 			swizzles_type const& Swizzles = swizzles_type(SWIZZLE_RED, SWIZZLE_GREEN, SWIZZLE_BLUE, SWIZZLE_ALPHA));
 
-		~texture(){}
+		~texture(){
+
+			if (this->is_print_shared_storage_count) {
+				std::cout << "Texture deinit - leaving storage counter: " << this->Storage.use_count() - 1 << std::endl;
+			}
+		}
 
 		/// Return whether the texture instance is empty, no storage_type or description have been assigned to the instance.
 		bool empty() const;
@@ -194,6 +200,11 @@ namespace gli
 		void store(extent_type const& TexelCoord, size_type Layer, size_type Face, size_type Level, gen_type const& Texel);
 
 		std::shared_ptr<storage_type> Storage;
+
+		bool is_print_shared_storage_count = false;
+		void print_shared_storage_count() const;
+		void set_shared_print(bool is_print);
+
 	protected:
 		target_type Target;
 		format_type Format;

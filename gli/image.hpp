@@ -5,6 +5,7 @@
 
 #include "./core/storage_linear.hpp"
 #include "./texture.hpp"
+#include <iostream>
 
 namespace gli
 {
@@ -36,7 +37,11 @@ namespace gli
 
 		explicit image(texture const& Texture, format_type Format, size_type BaseLayer, size_type BaseFace, size_type BaseLevel);
 
-		~image(){}
+		~image(){
+			if (this->is_print_shared_storage_count) {
+				std::cout << "Texture deinit - leaving storage counter: " << this->Storage.use_count() - 1 << std::endl;
+			}
+		}
 
 		/// Return whether the image instance is empty, no storage_linear or description have been assigned to the instance.
 		bool empty() const;
@@ -89,6 +94,9 @@ namespace gli
 		template <typename genType>
 		void store(extent_type const& TexelCoord, genType const& Data);
 
+		bool is_print_shared_storage_count = false;
+		void print_shared_storage_count() const;
+		void set_shared_print(bool is_print);
 	private:
 		/// Create an image object by sharing an existing image storage_linear from another image instance.
 		/// This image object is effectively an image view where the layer, the face and the level allows identifying
