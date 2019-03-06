@@ -36,6 +36,8 @@ namespace gli
 
 		explicit image(texture const& Texture, format_type Format, size_type BaseLayer, size_type BaseFace, size_type BaseLevel);
 
+		~image(){}
+
 		/// Return whether the image instance is empty, no storage_linear or description have been assigned to the instance.
 		bool empty() const;
 
@@ -109,6 +111,9 @@ namespace gli
 		data_type* compute_data(size_type BaseLayer, size_type BaseFace, size_type BaseLevel);
 		size_type compute_size(size_type Level) const;
 	};
+
+	/// Manually Call destructor for image object. Helper function used in FFI.
+	void destroy_image(image && Image);
 }//namespace gli
 
 #include "./core/image.inl"

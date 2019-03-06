@@ -262,4 +262,8 @@ namespace detail
 
 		*(this->data<genType>() + detail::texel_linear_addressing(this->extent(), TexelCoord)) = Data;
 	}
+
+	void destroy_image(image && Image) {
+		Image.~image();
+	}
 }//namespace gli

@@ -406,5 +406,9 @@ namespace gli
 
 		*(this->data<gen_type>(Layer, Face, Level) + ImageOffset) = Texel;
 	}
+
+	void destroy_texture(texture && Texture) {
+		Texture.~texture();
+	}
 }//namespace gli
 

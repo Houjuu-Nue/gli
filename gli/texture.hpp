@@ -65,7 +65,7 @@ namespace gli
 			format_type Format,
 			swizzles_type const& Swizzles = swizzles_type(SWIZZLE_RED, SWIZZLE_GREEN, SWIZZLE_BLUE, SWIZZLE_ALPHA));
 
-		virtual ~texture(){}
+		~texture(){}
 
 		/// Return whether the texture instance is empty, no storage_type or description have been assigned to the instance.
 		bool empty() const;
@@ -291,6 +291,9 @@ namespace gli
 			size_type GlobalMemorySize;
 		} Cache;
 	};
+
+	/// Manually Call destructor for texture object. Helper function used in FFI.
+	void destroy_texture(texture && Texture);
 }//namespace gli
 
 #include "./core/texture.inl"
