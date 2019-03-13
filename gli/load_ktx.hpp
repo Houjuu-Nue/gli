@@ -4,6 +4,7 @@
 #pragma once
 
 #include "texture.hpp"
+#include "gl.hpp"
 
 namespace gli
 {

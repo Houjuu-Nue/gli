@@ -1,6 +1,4 @@
-#include "../load_dds.hpp"
-#include "../load_kmg.hpp"
-#include "../load_ktx.hpp"
+
 #include "file.hpp"
 
 namespace gli

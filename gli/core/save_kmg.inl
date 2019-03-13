@@ -1,6 +1,5 @@
 #include <cstdio>
 #include <glm/gtc/round.hpp>
-#include "../load_kmg.hpp"
 #include "filter.hpp"
 #include "file.hpp"
 

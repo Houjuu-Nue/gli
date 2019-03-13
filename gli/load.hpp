@@ -5,6 +5,10 @@
 
 #include "texture.hpp"
 
+#include "load_dds.hpp"
+#include "load_kmg.hpp"
+#include "load_ktx.hpp"
+
 namespace gli
 {
 	/// Loads a texture storage_linear from file. Returns an empty storage_linear in case of failure.

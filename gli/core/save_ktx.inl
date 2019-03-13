@@ -1,6 +1,5 @@
 #include <cstdio>
 #include <glm/gtc/round.hpp>
-#include "../load_ktx.hpp"
 #include "file.hpp"
 
 namespace gli{
