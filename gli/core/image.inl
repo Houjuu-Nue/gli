@@ -263,12 +263,11 @@ namespace detail
 		*(this->data<genType>() + detail::texel_linear_addressing(this->extent(), TexelCoord)) = Data;
 	}
 
-	int image::get_shared_storage_count() const {
-
-		return static_cast<int>(this->Storage.use_count());
-	}
-
 	void destroy_image(image && Image) {
 		Image.~image();
+	}
+
+	int get_image_shared_storage_count(const image & img) {
+		return static_cast<int>(img.Storage.use_count());
 	}
 }//namespace gli

@@ -407,12 +407,12 @@ namespace gli
 		*(this->data<gen_type>(Layer, Face, Level) + ImageOffset) = Texel;
 	}
 
-	int texture::get_shared_storage_count() const {
-		return static_cast<int>(this->Storage.use_count());
-	}
-
 	void destroy_texture(texture && Texture) {
 		Texture.~texture();
+	}
+
+	int get_texture_shared_storage_count(const texture & tex) {
+		return static_cast<int>(tex.Storage.use_count());
 	}
 }//namespace gli
 
