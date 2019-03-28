@@ -1,4 +1,4 @@
-#include "clear.hpp"
+
 #include <glm/vector_relational.hpp>
 
 namespace gli

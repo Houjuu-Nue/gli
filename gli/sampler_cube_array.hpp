@@ -8,6 +8,8 @@
 #include "core/mipmaps_compute.hpp"
 #include "core/convert_func.hpp"
 
+#include "clear.hpp"
+
 namespace gli
 {
 	/// Cube map array texture sampler

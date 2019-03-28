@@ -7,6 +7,7 @@
 #include "texture2d.hpp"
 #include "core/mipmaps_compute.hpp"
 #include "core/convert_func.hpp"
+#include "clear.hpp"
 
 namespace gli
 {
