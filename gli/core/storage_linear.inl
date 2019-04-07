@@ -85,7 +85,7 @@ namespace gli
 		return &this->Data[0];
 	}
 
-	storage_linear::data_type const* const storage_linear::data() const
+	storage_linear::data_type const* storage_linear::data() const
 	{
 		GLI_ASSERT(!this->empty());
 
